@@ -25,7 +25,10 @@ The registry handles hop 2. Public reads, authenticated writes.
 
 ```bash
 cp .env.example .env
-# Edit .env — set JWT_SECRET to a strong random value
+# Edit .env: set JWT_SECRET to a strong random value (at least 32 chars).
+# The compose stack runs the server as NODE_ENV=production, so it will refuse
+# to boot while JWT_SECRET is left at the example default. Generate one with:
+#   openssl rand -hex 64
 docker compose up --build
 ```
 
@@ -42,10 +45,18 @@ docker compose up --build
 | Variable | Required | Default | Description |
 |---|---|---|---|
 | `DATABASE_URL` | yes | — | Postgres connection string |
-| `JWT_SECRET` | yes (prod) | dev default | Must be ≥ 32 chars in production |
+| `POSTGRES_PASSWORD` | yes | `registry-local` in dev | Postgres password (used to build `DATABASE_URL` in the compose stack) |
+| `JWT_SECRET` | yes (prod) | dev default | Must be at least 32 chars in production. The compose stack runs as production, so it must be set even for local `docker compose up`. |
 | `JWT_EXPIRES_IN` | no | `7d` | Token lifetime |
 | `PORT` | no | `3002` | API server port |
 | `DB_MAX_CONNECTIONS` | no | `10` | Postgres connection pool size |
+
+### Production-only (see `.env.prod.example` + `docker-compose.prod.yml`)
+
+| Variable | Required | Default | Description |
+|---|---|---|---|
+| `HOST` | yes (prod) | (none) | Public domain (gets free HTTPS) or bare IP as `http://<ip>`. Drives the Caddy site address. |
+| `NEXT_PUBLIC_REGISTRY_API_URL` | yes (prod) | (none) | API base URL baked into the web bundle at build time. Must match `HOST` with an `/api` suffix, e.g. `https://registry.example.com/api`. |
 
 ---
 
