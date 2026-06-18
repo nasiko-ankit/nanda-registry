@@ -1,4 +1,4 @@
-import type { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import type { FastifyInstance } from 'fastify';
 import { getSql } from '../db.js';
 import {
   toCatalogEntry,
@@ -29,15 +29,6 @@ interface UpdateAgentBody {
   tags?: string[];
   ttl_seconds?: number;
   status?: 'active' | 'inactive';
-}
-
-/** Requires a valid JWT issued by POST /auth/login. */
-async function requireAuth(request: FastifyRequest, reply: FastifyReply): Promise<void> {
-  try {
-    await request.jwtVerify();
-  } catch {
-    return reply.code(401).send({ error: 'UNAUTHORIZED', detail: 'invalid or expired token' });
-  }
 }
 
 function buildCatalogDocument(rows: AgentRow[]): CatalogDocument {
@@ -187,7 +178,7 @@ export async function registerAgentRoutes(fastify: FastifyInstance): Promise<voi
 
   // Create agent
   fastify.post<{ Body: CreateAgentBody }>('/agents', {
-    preHandler: [requireAuth],
+    preHandler: [fastify.authenticate],
     schema: {
       tags: ['catalog'],
       summary: 'Register an agent in the catalog',
@@ -241,7 +232,7 @@ export async function registerAgentRoutes(fastify: FastifyInstance): Promise<voi
 
   // Update agent
   fastify.put<{ Params: { agent_id: string }; Body: UpdateAgentBody }>('/agents/:agent_id', {
-    preHandler: [requireAuth],
+    preHandler: [fastify.authenticate],
     schema: {
       tags: ['catalog'],
       summary: 'Update an agent catalog entry',
@@ -294,7 +285,7 @@ export async function registerAgentRoutes(fastify: FastifyInstance): Promise<voi
 
   // Delete agent
   fastify.delete<{ Params: { agent_id: string } }>('/agents/:agent_id', {
-    preHandler: [requireAuth],
+    preHandler: [fastify.authenticate],
     schema: {
       tags: ['catalog'],
       summary: 'Delete an agent from the catalog',
