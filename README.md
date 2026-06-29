@@ -1,6 +1,6 @@
 # NANDA AI Catalog
 
-A self-hosted agent catalog that organizations run on their own infrastructure. It stores one `CatalogEntry` per agent and serves them in the [AI Catalog](https://spec.aicatalog.org) format.
+A self-hosted agent catalog that organizations run on their own infrastructure. It stores one `CatalogEntry` per agent and serves them in the [AI Catalog](https://ai-catalog.io/#top-level-structure) format.
 
 In the resolution chain, NANDA AI Catalog is **hop 2**:
 

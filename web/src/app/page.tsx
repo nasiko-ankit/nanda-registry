@@ -417,7 +417,7 @@ export default function RegistryManagerPage() {
 
   if (!session) {
     return (
-      <PageShell title="Registry Manager" description="Manage agents on your Registry Server.">
+      <PageShell title="AI Catalog Manager" description="Manage agents on your Registry Server.">
         <ConnectScreen onConnected={onConnected} connectState={connectState} />
       </PageShell>
     );
@@ -426,7 +426,7 @@ export default function RegistryManagerPage() {
   // ── Main layout ───────────────────────────────────────────────────────────────
 
   return (
-    <PageShell title="Registry Manager" description={session.registryUrl}>
+    <PageShell title="AI Catalog Manager" description={session.registryUrl}>
       {/* Top bar */}
       <div className="mb-4 flex items-center justify-between rounded-2xl border border-black/10 bg-white px-4 py-2.5 shadow-sm">
         <div className="text-sm text-slate-600">
