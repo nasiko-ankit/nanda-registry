@@ -9,7 +9,7 @@ export function Header() {
             NR
           </span>
           <span className="hidden truncate font-serif text-lg italic tracking-tight text-slate-950 sm:block">
-            NANDA Registry
+            NANDA AI Catalog Server
           </span>
         </Link>
       </div>

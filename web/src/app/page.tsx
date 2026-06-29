@@ -194,9 +194,9 @@ function ConnectScreen({
     <div className="mx-auto max-w-lg space-y-5">
       <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm space-y-5">
         <div>
-          <h2 className="font-serif text-xl italic text-slate-950">Registry Manager</h2>
+          <h2 className="font-serif text-xl italic text-slate-950">AI Catalog Manager</h2>
           <p className="mt-1 text-xs text-slate-500">
-            Sign in to manage your agents on the NANDA Registry.
+            Sign in to manage your agents on the NANDA AI Catalog.
           </p>
         </div>
 

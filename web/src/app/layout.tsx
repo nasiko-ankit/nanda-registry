@@ -4,11 +4,11 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "NANDA Registry",
+  title: "NANDA AI Catalog",
   description: "Self-hosted agent catalog — manage and serve AI agent entries.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   openGraph: {
-    title: "NANDA Registry",
+    title: "NANDA AI Catalog",
     description: "Self-hosted agent catalog — manage and serve AI agent entries.",
     type: "website",
   },

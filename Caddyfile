@@ -1,4 +1,7 @@
 {$HOST} {
+	handle /.well-known/ai-catalog.json {
+		reverse_proxy server:3002
+	}
 	handle /api/* {
 		uri strip_prefix /api
 		reverse_proxy server:3002
