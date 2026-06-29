@@ -1,14 +1,14 @@
-# NANDA Registry
+# NANDA Registry Server Repo
 
 A self-hosted agent catalog that organizations run on their own infrastructure. It stores one `CatalogEntry` per agent and serves them in the [AI Catalog](https://spec.aicatalog.org) format.
 
-In the resolution chain, NANDA Registry is **hop 2**:
+In the resolution chain, NANDA Registry Server is **hop 2**:
 
 ```
-Requester → NANDA Index → NANDA Registry → Agent Runtime
+Requester → NANDA Index → NANDA Registry Server → Agent Runtime
 ```
 
-NANDA Index tells you which registry to call. NANDA Registry tells you where the specific agent card lives.
+NANDA Index tells you which registry to call. NANDA Registry Server tells you where the specific agent card lives.
 
 ---
 
