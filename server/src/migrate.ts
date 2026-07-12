@@ -19,7 +19,6 @@ async function migrate(): Promise<void> {
       )
     `.catch((err: unknown) => {
       if ((err as { code?: string }).code !== '42P07') throw err;
-      console.log(JSON.stringify(err));
     });
 
     const files = (await readdir(MIGRATIONS_DIR))
